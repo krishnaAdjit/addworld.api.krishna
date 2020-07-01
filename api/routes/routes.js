@@ -16,7 +16,8 @@ const {
     categoriesList,
     saveFeed,
     getStoreProfile,
-    getStoreGallery
+    getStoreGallery,
+    getAllStores
 } = require('../controllers/storeProfile.controller')
 
 const {
@@ -26,7 +27,7 @@ const {
     verifyUserOtp,
     changeUserPassword,
     searchStoreByCategory,
-    searchStore
+    searchStore,
 } = require('../controllers/users.controller')
 
 const { feedUpload, bannerPicUpload } = require('../controllers/multer.config');
@@ -55,5 +56,5 @@ router.post('/verifyUserOtp',verifyUserOtp)
 router.post('/changeUserPassword',changeUserPassword)
 router.get('/searchStoreByCategory/:category',searchStoreByCategory)
 router.get('/searchStore/:searchKey',searchStore)
-
+router.get('/getAllStores',getAllStores)
 module.exports = router;

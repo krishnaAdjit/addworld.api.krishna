@@ -62,7 +62,7 @@ exports.getStoreProfile = async (req, res) => {
     var store_id = req.params.store_id
     var profile = await Store.find(
       { _id: store_id },
-      { otp: 0, createdAt: 0, updatedAt: 0, __v: 0, password: 0}
+      { otp: 0, createdAt: 0, updatedAt: 0, __v: 0, password: 0 }
     )
     if (!profile) {
       res.status(200).json({ msg: 'Store not found', status: false })
@@ -148,6 +148,19 @@ exports.getStoreGallery = async (req, res) => {
     } else {
       res.status(200).json({ msg: 'Store gallery', data: storeGallery.gallery, status: true })
     }
+  } catch (err) {
+    return res.status(200).json({ msg: 'Error occured, ' + err, status: false })
+  }
+}
+
+exports.getAllStores = async (req, res) => {
+  try {
+var store=await Store.find({},{otp: 0, createdAt: 0, updatedAt: 0, __v: 0, password: 0 })
+if(store.length>0){
+  res.status(200).json({ msg: 'All stores',data:store, status: true })
+}else{
+  res.status(200).json({ msg: 'No stores found',data:store, status: true })
+}
   } catch (err) {
     return res.status(200).json({ msg: 'Error occured, ' + err, status: false })
   }
